@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0E0B1A"/>
+      <stop offset="100%" stop-color="#1B142F"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="16" fill="url(#bgGrad4)"/>
+  <rect x="40" y="40" width="720" height="420" rx="12" fill="#171326" stroke="#302544" stroke-width="1.5"/>
+  <rect x="40" y="40" width="720" height="45" rx="12" fill="#221A3B"/>
+  <circle cx="65" cy="62" r="6" fill="#EF4444"/>
+  <circle cx="85" cy="62" r="6" fill="#F59E0B"/>
+  <circle cx="105" cy="62" r="6" fill="#10B981"/>
+  <text x="140" y="67" fill="#A78BFA" font-family="sans-serif" font-size="13" font-weight="600">Docstring Auto-Gen • Python AST &amp; PEP 257 Compliant</text>
+  <!-- Split Code View -->
+  <rect x="65" y="110" width="315" height="325" rx="8" fill="#1F1836" stroke="#302544"/>
+  <text x="85" y="140" fill="#F59E0B" font-family="monospace" font-size="12">def calculate_metrics(data, factor):</text>
+  <text x="110" y="165" fill="#B8B2C9" font-family="monospace" font-size="12">res = [x * factor for x in data]</text>
+  <text x="110" y="190" fill="#B8B2C9" font-family="monospace" font-size="12">return sum(res)</text>
+  
+  <rect x="415" y="110" width="325" height="325" rx="8" fill="#140E26" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="435" y="140" fill="#10B981" font-family="monospace" font-size="12">"""Calculate aggregated metrics.</text>
+  <text x="435" y="170" fill="#A78BFA" font-family="monospace" font-size="11">Args:</text>
+  <text x="450" y="195" fill="#B8B2C9" font-family="monospace" font-size="11">data (list): Raw numeric dataset</text>
+  <text x="450" y="220" fill="#B8B2C9" font-family="monospace" font-size="11">factor (float): Multiplier scalar</text>
+  <text x="435" y="250" fill="#A78BFA" font-family="monospace" font-size="11">Returns:</text>
+  <text x="450" y="275" fill="#B8B2C9" font-family="monospace" font-size="11">float: Scaled cumulative sum</text>
+  <text x="435" y="305" fill="#10B981" font-family="monospace" font-size="12">"""</text>
+</svg>

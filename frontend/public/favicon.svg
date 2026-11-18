@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="codestormGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF2E63" />
+      <stop offset="100%" stop-color="#FF5E2B" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#0B0C14" stroke="url(#codestormGrad)" stroke-width="3" />
+  <path d="M22 18V44H42V38H29V18H22Z" fill="url(#codestormGrad)" />
+  <circle cx="44" cy="20" r="4" fill="#22D3EE" />
+</svg>
