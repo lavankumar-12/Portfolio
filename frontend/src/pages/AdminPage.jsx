@@ -290,7 +290,7 @@ export const AdminPage = () => {
   );
 
   return (
-    <div className="min-h-screen flex bg-light-secondary dark:bg-dark-bg text-light-body dark:text-dark-body transition-colors">
+    <div className="h-screen w-full flex overflow-hidden bg-light-secondary dark:bg-dark-bg text-light-body dark:text-dark-body transition-colors">
       {/* Toast Notification */}
       {toast && (
         <div
@@ -309,8 +309,8 @@ export const AdminPage = () => {
         </div>
       )}
 
-      {/* Desktop Left Fixed Sidebar */}
-      <aside className="hidden lg:block w-64 shrink-0 sticky top-0 h-screen">
+      {/* Desktop Left Fixed Sidebar (Always fixed at viewport height, never scrolls away) */}
+      <aside className="hidden lg:flex flex-col w-64 shrink-0 h-full z-20">
         <SidebarContent />
       </aside>
 
@@ -327,10 +327,10 @@ export const AdminPage = () => {
         </div>
       )}
 
-      {/* Main Content Area (Right side) */}
-      <div className="flex-1 min-w-0 flex flex-col">
+      {/* Main Content Area (Right side - Independently scrollable workspace) */}
+      <div className="flex-1 min-w-0 h-full overflow-y-auto flex flex-col">
         {/* Top Utility Header */}
-        <header className="sticky top-0 z-30 h-16 px-4 sm:px-8 bg-white/90 dark:bg-[#0D0E16]/90 backdrop-blur-xl border-b border-slate-200 dark:border-white/10 flex items-center justify-between gap-4">
+        <header className="sticky top-0 z-30 shrink-0 h-16 px-4 sm:px-8 bg-white/90 dark:bg-[#0D0E16]/90 backdrop-blur-xl border-b border-slate-200 dark:border-white/10 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(true)}
