@@ -59,17 +59,37 @@ export const Navbar = () => {
   }, [isOpen]);
 
   const handleLinkClick = (e, href) => {
-    // Close the mobile drawer immediately
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
     setIsOpen(false);
 
     const targetId = href.replace(/^#/, '');
     setActiveSection(targetId);
 
-    const target = document.getElementById(targetId);
-    if (target) {
-      // Smoothly scroll to the section
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    // 50ms delay allows mobile touch gesture to finish and drawer to begin closing
+    // so mobile browsers don't cancel or abort the smooth scroll
+    setTimeout(() => {
+      if (targetId === 'home') {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        });
+        return;
+      }
+
+      const target = document.getElementById(targetId);
+      if (target) {
+        const navOffset = 80;
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - navOffset;
+
+        window.scrollTo({
+          top: Math.max(0, targetTop),
+          behavior: 'smooth',
+        });
+      }
+    }, 50);
   };
 
   return (
