@@ -59,35 +59,16 @@ export const Navbar = () => {
   }, [isOpen]);
 
   const handleLinkClick = (e, href) => {
-    // 1. Close mobile drawer immediately so the screen is clear
+    // Close the mobile drawer immediately
     setIsOpen(false);
 
     const targetId = href.replace(/^#/, '');
+    setActiveSection(targetId);
+
     const target = document.getElementById(targetId);
-
     if (target) {
-      if (e && e.preventDefault) {
-        e.preventDefault();
-      }
-
-      // Small delay allows mobile touch event cycle to complete so browsers
-      // do not cancel the smooth scroll
-      setTimeout(() => {
-        const navOffset = 84;
-        const bodyRect = document.body.getBoundingClientRect().top;
-        const elementRect = target.getBoundingClientRect().top;
-        const offsetPosition = elementRect - bodyRect - navOffset;
-
-        window.scrollTo({
-          top: Math.max(0, offsetPosition),
-          behavior: 'smooth',
-        });
-
-        setActiveSection(targetId);
-        try {
-          window.history.pushState(null, '', href);
-        } catch {}
-      }, 60);
+      // Smoothly scroll to the section
+      target.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
