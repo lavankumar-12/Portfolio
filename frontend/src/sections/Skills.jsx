@@ -16,7 +16,7 @@ export const Skills = () => {
   if (!skills || skills.length === 0) return null;
 
   return (
-    <section id="skills" className="py-16 md:py-24 relative">
+    <section id="skills" className="py-16 md:py-24 relative scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-[82rem] mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="Skills"

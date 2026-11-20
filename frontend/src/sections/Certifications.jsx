@@ -11,7 +11,7 @@ export const Certifications = () => {
   if (!certificates || certificates.length === 0) return null;
 
   return (
-    <section id="certifications" className="py-16 md:py-24 relative">
+    <section id="certifications" className="py-16 md:py-24 relative scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="Credentials"

@@ -34,6 +34,7 @@
     width: 100%;
     max-width: 100vw;
     -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
   }
 
   body {
@@ -46,6 +47,7 @@
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
     -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
   }
 
   /* Fixed navbar scroll offset for smooth anchor navigation */

@@ -23,7 +23,7 @@ export const Projects = () => {
   if (!projects || projects.length === 0) return null;
 
   return (
-    <section id="projects" className="py-16 md:py-24 relative">
+    <section id="projects" className="py-16 md:py-24 relative scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="Featured Projects"

@@ -8,7 +8,7 @@ export const Contact = () => {
   const { profile } = usePortfolio();
 
   return (
-    <section id="contact" className="py-20 md:py-28 relative">
+    <section id="contact" className="py-20 md:py-28 relative scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="Get in Touch"

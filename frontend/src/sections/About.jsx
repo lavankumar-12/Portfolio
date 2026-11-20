@@ -8,7 +8,7 @@ export const About = () => {
   const { profile } = usePortfolio();
 
   return (
-    <section id="about" className="py-16 md:py-24 relative">
+    <section id="about" className="py-16 md:py-24 relative scroll-mt-20 md:scroll-mt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading badge="About Me" title="Who I Am" className="mb-8 md:mb-10" />
 

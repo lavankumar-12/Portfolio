@@ -59,16 +59,35 @@ export const Navbar = () => {
   }, [isOpen]);
 
   const handleLinkClick = (e, href) => {
-    e.preventDefault();
+    // 1. Close mobile drawer immediately so the screen is clear
     setIsOpen(false);
-    const target = document.querySelector(href);
+
+    const targetId = href.replace(/^#/, '');
+    const target = document.getElementById(targetId);
+
     if (target) {
-      const navOffset = 84;
-      const targetTop = target.getBoundingClientRect().top + window.scrollY - navOffset;
-      window.scrollTo({
-        top: Math.max(0, targetTop),
-        behavior: 'smooth',
-      });
+      if (e && e.preventDefault) {
+        e.preventDefault();
+      }
+
+      // Small delay allows mobile touch event cycle to complete so browsers
+      // do not cancel the smooth scroll
+      setTimeout(() => {
+        const navOffset = 84;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = target.getBoundingClientRect().top;
+        const offsetPosition = elementRect - bodyRect - navOffset;
+
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: 'smooth',
+        });
+
+        setActiveSection(targetId);
+        try {
+          window.history.pushState(null, '', href);
+        } catch {}
+      }, 60);
     }
   };
 
