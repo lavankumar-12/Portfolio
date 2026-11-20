@@ -22,18 +22,35 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// CORS configuration (strips trailing slashes automatically so Vercel URLs always match)
-const allowedOrigins = process.env.CLIENT_URL
+// Dynamic CORS: Allows localhost, explicitly configured CLIENT_URL, and all Vercel deployments (*.vercel.app)
+const configuredOrigins = process.env.CLIENT_URL
   ? process.env.CLIENT_URL.split(',').map((o) => o.trim().replace(/\/$/, '')).filter(Boolean)
-  : null;
+  : [];
 
-app.use(
-  cors({
-    origin: allowedOrigins && allowedOrigins.length > 0 ? allowedOrigins : true,
-    credentials: true,
-    exposedHeaders: ['X-Total-Count'],
-  })
-);
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow non-browser requests (like server probes, curl, uptime monitors)
+    if (!origin) return callback(null, true);
+
+    const isExplicitlyAllowed = configuredOrigins.some(
+      (allowed) => allowed === origin || allowed === '*'
+    );
+
+    // Allow all Vercel deployments (production domain, branch previews, commit URLs)
+    const isVercelDomain = /^https:\/\/[a-zA-Z0-9_.-]+\.vercel\.app$/.test(origin);
+    const isLocalhost = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+
+    if (configuredOrigins.length === 0 || isExplicitlyAllowed || isVercelDomain || isLocalhost) {
+      return callback(null, true);
+    }
+
+    callback(new Error(`Origin ${origin} not allowed by CORS`));
+  },
+  credentials: true,
+  exposedHeaders: ['X-Total-Count'],
+};
+
+app.use(cors(corsOptions));
 
 // Increase JSON payload limit for base64 image & PDF resume uploads
 app.use(express.json({ limit: '15mb' }));
