@@ -6,6 +6,7 @@ export const personalInfo = {
   location: "Hyderabad, India",
   educationBadge: "B.Tech – CSE (Narsimha Reddy Engineering College)",
   college: "Narsimha Reddy Engineering College",
+  profilePhoto: "/profile.webp",
   
   heroDescription:
     "I build modern digital experiences by combining clean design, powerful backend systems, and scalable web technologies.",

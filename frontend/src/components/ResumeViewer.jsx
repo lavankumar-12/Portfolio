@@ -34,31 +34,31 @@ export const ResumeViewer = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.45 }}
-      className="w-full max-w-4xl mx-auto rounded-3xl bg-gradient-to-br from-sky-50/90 via-white/95 to-rose-50/90 dark:bg-none dark:bg-dark-card border border-slate-200/90 dark:border-dark-border shadow-light-card dark:shadow-dark-card p-6 sm:p-10 backdrop-blur-md"
+      className="w-full max-w-4xl mx-auto rounded-2xl sm:rounded-3xl bg-gradient-to-br from-sky-50/90 via-white/95 to-rose-50/90 dark:bg-none dark:bg-dark-card border border-slate-200/90 dark:border-dark-border shadow-light-card dark:shadow-dark-card p-5 sm:p-10 backdrop-blur-md"
     >
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-light-border dark:border-dark-border">
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-[#FF2E63]/10 border border-[#FF2E63]/25 flex items-center justify-center text-[#FF2E63] shadow-sm">
-            <FileText className="w-7 h-7" />
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 pb-6 border-b border-light-border dark:border-dark-border">
+        <div className="flex items-center gap-3.5 sm:gap-4">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#FF2E63]/10 border border-[#FF2E63]/25 flex items-center justify-center text-[#FF2E63] shadow-sm shrink-0">
+            <FileText className="w-6 h-6 sm:w-7 sm:h-7" />
           </div>
-          <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-light-heading dark:text-white">
+          <div className="min-w-0">
+            <h3 className="text-lg sm:text-2xl font-bold text-light-heading dark:text-white truncate">
               {resumeFileName}
             </h3>
             <p className="text-xs sm:text-sm text-light-body dark:text-dark-body flex items-center gap-1.5 mt-0.5">
-              <Calendar className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
-              Last revised: <span className="font-semibold">{lastUpdated}</span>
+              <Calendar className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400 shrink-0" />
+              <span>Last revised: <span className="font-semibold">{lastUpdated}</span></span>
             </p>
           </div>
         </div>
 
         {/* Buttons */}
-        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full md:w-auto">
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => setShowEmbed(!showEmbed)}
-            className="flex-1 md:flex-none px-4 py-2.5 rounded-full border border-light-border dark:border-cyan-400/35 bg-light-secondary dark:bg-cyan-500/10 text-xs sm:text-sm font-semibold text-light-heading dark:text-cyan-300 hover:border-cyan-400 transition-colors flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-full border border-light-border dark:border-cyan-400/35 bg-light-secondary dark:bg-cyan-500/10 text-xs sm:text-sm font-semibold text-light-heading dark:text-cyan-300 hover:border-cyan-400 transition-colors flex items-center justify-center gap-2"
           >
             <Eye className="w-4 h-4 text-cyan-500 dark:text-cyan-400" />
             <span>{showEmbed ? 'Hide Document Preview' : 'Interactive Preview'}</span>
@@ -69,7 +69,7 @@ export const ResumeViewer = () => {
             whileTap={{ scale: 0.97 }}
             href={downloadUrl}
             download={resumeFileName}
-            className="flex-1 md:flex-none px-5 py-2.5 rounded-full bg-gradient-to-r from-[#FF2E63] to-[#FF5E2B] text-white text-xs sm:text-sm font-bold shadow-[0_0_20px_rgba(255,46,99,0.35)] hover:shadow-[0_0_28px_rgba(255,46,99,0.55)] transition-all flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-gradient-to-r from-[#FF2E63] to-[#FF5E2B] text-white text-xs sm:text-sm font-bold shadow-[0_0_20px_rgba(255,46,99,0.35)] hover:shadow-[0_0_28px_rgba(255,46,99,0.55)] transition-all flex items-center justify-center gap-2"
           >
             <Download className="w-4 h-4" />
             <span>Download Resume PDF</span>
@@ -104,7 +104,7 @@ export const ResumeViewer = () => {
             <iframe
               src={previewUrl}
               title={`${profile.name} Resume`}
-              className="w-full h-[600px] border-none bg-white"
+              className="w-full h-[450px] sm:h-[600px] border-none bg-white"
             />
           </motion.div>
         ) : (

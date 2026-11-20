@@ -19,26 +19,41 @@ export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 24);
-      const sections = navLinks.map((link) => link.href.substring(1));
-      const scrollPosition = window.scrollY + 200;
+    let ticking = false;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section) {
-          const top = section.offsetTop;
-          if (scrollPosition >= top) {
-            setActiveSection(sections[i]);
-            break;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 24);
+          const scrollPosition = window.scrollY + 200;
+
+          for (let i = navLinks.length - 1; i >= 0; i--) {
+            const section = document.getElementById(navLinks[i].href.substring(1));
+            if (section && scrollPosition >= section.offsetTop) {
+              setActiveSection(navLinks[i].href.substring(1));
+              break;
+            }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close mobile drawer on Escape key or outside interaction
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    if (isOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
 
   const handleLinkClick = (e, href) => {
     e.preventDefault();

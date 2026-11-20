@@ -81,7 +81,7 @@ const RoundSkillLogo = ({ skill, isHighlighted, onHover, onLeave }) => {
             : `0 6px 18px rgba(0,0,0,0.45)`,
           borderColor: isHighlighted ? meta.color : undefined,
         }}
-        className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center p-2.5 bg-white dark:bg-[#121420] border-2 transition-colors duration-200 ${
+        className={`w-9 h-9 sm:w-13 sm:h-13 rounded-full flex items-center justify-center p-1.5 sm:p-2.5 bg-white dark:bg-[#121420] border-2 transition-colors duration-200 ${
           isHighlighted
             ? 'z-30'
             : 'border-slate-200 dark:border-white/15 hover:border-cyan-400'
@@ -93,17 +93,17 @@ const RoundSkillLogo = ({ skill, isHighlighted, onHover, onLeave }) => {
             alt={skill}
             loading="lazy"
             onError={() => setImgFailed(true)}
-            className={`w-7 h-7 sm:w-8 sm:h-8 object-contain ${
+            className={`w-5 h-5 sm:w-7 sm:h-7 object-contain ${
               meta.invertDark ? 'dark:invert dark:brightness-200' : ''
             }`}
           />
         ) : meta.fallbackType === 'api' ? (
-          <Globe className="w-6 h-6 text-[#FF2E63]" />
+          <Globe className="w-4 h-4 sm:w-6 sm:h-6 text-[#FF2E63]" />
         ) : meta.fallbackType === 'db' ? (
-          <Database className="w-6 h-6 text-cyan-400" />
+          <Database className="w-4 h-4 sm:w-6 sm:h-6 text-cyan-400" />
         ) : (
           <span
-            className="text-[11px] font-black uppercase tracking-tight text-center leading-none"
+            className="text-[9px] sm:text-[11px] font-black uppercase tracking-tight text-center leading-none"
             style={{ color: meta.color }}
           >
             {skill.slice(0, 4)}
@@ -113,7 +113,7 @@ const RoundSkillLogo = ({ skill, isHighlighted, onHover, onLeave }) => {
 
       {/* Hover Tooltip Pill */}
       <div
-        className={`pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap bg-slate-900 dark:bg-[#0D0E16] text-white border border-white/15 shadow-lg transition-all duration-200 z-40 ${
+        className={`pointer-events-none absolute -bottom-7 sm:-bottom-8 left-1/2 -translate-x-1/2 px-2 sm:px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold whitespace-nowrap bg-slate-900 dark:bg-[#0D0E16] text-white border border-white/15 shadow-lg transition-all duration-200 z-40 ${
           isHighlighted
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0'
@@ -136,32 +136,32 @@ export const SkillOrbitVisual = ({ skillNames = [], highlightedSkill, onHighligh
   const outerSkills = uniqueSkills.slice(innerCount);
 
   return (
-    <div className="relative flex items-center justify-center w-full h-[340px] sm:h-[390px] select-none">
+    <div className="relative flex items-center justify-center w-full max-w-[320px] sm:max-w-[420px] mx-auto h-[290px] sm:h-[370px] select-none">
       {/* Ambient Radial Center Glow */}
-      <div className="absolute w-56 h-56 rounded-full bg-gradient-to-tr from-[#FF2E63]/20 via-cyan-400/15 to-[#FF5E2B]/20 blur-3xl pointer-events-none" />
+      <div className="absolute w-44 h-44 sm:w-56 sm:h-56 rounded-full bg-gradient-to-tr from-[#FF2E63]/20 via-cyan-400/15 to-[#FF5E2B]/20 blur-3xl pointer-events-none" />
 
       {/* Center Core Badge */}
       <motion.div
         animate={{ scale: [1, 1.07, 1] }}
         transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut' }}
-        className="relative z-20 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#FF2E63] via-[#FF4D4D] to-[#FF5E2B] p-[2px] shadow-[0_0_32px_rgba(255,46,99,0.45)] flex items-center justify-center"
+        className="relative z-20 w-13 h-13 sm:w-18 sm:h-18 rounded-full bg-gradient-to-tr from-[#FF2E63] via-[#FF4D4D] to-[#FF5E2B] p-[2px] shadow-[0_0_24px_rgba(255,46,99,0.45)] flex items-center justify-center"
       >
         <div className="w-full h-full rounded-full bg-white dark:bg-[#0B0C14] flex flex-col items-center justify-center">
-          <Code2 className="w-6 h-6 sm:w-7 sm:h-7 text-[#FF2E63]" />
-          <span className="text-[9px] font-extrabold uppercase tracking-widest text-cyan-600 dark:text-cyan-400 mt-0.5">
+          <Code2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#FF2E63]" />
+          <span className="text-[8px] sm:text-[9px] font-extrabold uppercase tracking-widest text-cyan-600 dark:text-cyan-400 mt-0.5">
             STACK
           </span>
         </div>
       </motion.div>
 
       {/* Inner Orbit Track */}
-      <div className="absolute w-[184px] h-[184px] sm:w-[208px] sm:h-[208px] rounded-full border border-dashed border-cyan-500/35 dark:border-cyan-400/25 pointer-events-none" />
+      <div className="absolute w-[150px] h-[150px] sm:w-[195px] sm:h-[195px] rounded-full border border-dashed border-cyan-500/35 dark:border-cyan-400/25 pointer-events-none" />
 
       {/* Inner Rotating Orbit Ring (Clockwise) */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
-        className="absolute w-[184px] h-[184px] sm:w-[208px] sm:h-[208px] pointer-events-none"
+        className="absolute w-[150px] h-[150px] sm:w-[195px] sm:h-[195px] pointer-events-none"
       >
         {innerSkills.map((skill, i) => {
           const angle = (i / Math.max(innerSkills.length, 1)) * 2 * Math.PI - Math.PI / 2;
@@ -197,13 +197,13 @@ export const SkillOrbitVisual = ({ skillNames = [], highlightedSkill, onHighligh
       {/* Outer Orbit Track */}
       {outerSkills.length > 0 && (
         <>
-          <div className="absolute w-[300px] h-[300px] sm:w-[348px] sm:h-[348px] rounded-full border border-dashed border-[#FF2E63]/30 dark:border-[#FF2E63]/25 pointer-events-none" />
+          <div className="absolute w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] rounded-full border border-dashed border-[#FF2E63]/30 dark:border-[#FF2E63]/25 pointer-events-none" />
 
           {/* Outer Rotating Orbit Ring (Counter-Clockwise) */}
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 36, repeat: Infinity, ease: 'linear' }}
-            className="absolute w-[300px] h-[300px] sm:w-[348px] sm:h-[348px] pointer-events-none"
+            className="absolute w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] pointer-events-none"
           >
             {outerSkills.map((skill, i) => {
               const angle = (i / Math.max(outerSkills.length, 1)) * 2 * Math.PI;

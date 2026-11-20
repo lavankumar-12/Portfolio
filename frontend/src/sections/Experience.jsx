@@ -25,7 +25,7 @@ export const Experience = () => {
         {activeExp && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* Left Company Selector List */}
-            <div className="lg:col-span-4 flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0">
+            <div className="lg:col-span-4 flex lg:flex-col gap-2 overflow-x-auto no-scrollbar pb-2 lg:pb-0 touch-pan-x">
               {experiences.map((exp, idx) => {
                 const isActive = idx === safeIndex;
                 return (
@@ -33,7 +33,7 @@ export const Experience = () => {
                     key={exp._id || exp.id || exp.organization}
                     type="button"
                     onClick={() => setActiveIndex(idx)}
-                    className={`group text-left px-4 py-3.5 rounded-xl border transition-all duration-200 shrink-0 lg:shrink lg:w-full flex items-center justify-between gap-3 ${
+                    className={`group text-left px-4 py-3 sm:py-3.5 rounded-xl border transition-all duration-200 shrink-0 lg:shrink lg:w-full flex items-center justify-between gap-3 ${
                       isActive
                         ? 'bg-rose-50/95 dark:bg-[#FF2E63]/10 border-[#FF2E63] shadow-[0_0_16px_rgba(255,46,99,0.15)]'
                         : 'bg-cyan-50/75 dark:bg-dark-card border-cyan-200/75 dark:border-dark-border hover:border-[#FF2E63]/50'

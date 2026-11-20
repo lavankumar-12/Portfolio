@@ -19,13 +19,21 @@ import { CodingProfiles } from './sections/CodingProfiles';
 import { Resume } from './sections/Resume';
 import { Contact } from './sections/Contact';
 
-// Admin Page
-import { AdminPage } from './pages/AdminPage';
+// Lazy-load Admin CMS so portfolio visitors don't download admin code on mobile
+const AdminPage = React.lazy(() =>
+  import('./pages/AdminPage').then((module) => ({ default: module.AdminPage }))
+);
+
+const AdminLoadingFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-light-bg dark:bg-dark-bg">
+    <div className="w-8 h-8 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin" />
+  </div>
+);
 
 const PortfolioHome = () => (
   <div className="relative isolate min-h-screen flex flex-col bg-light-bg text-light-body dark:bg-dark-bg dark:text-dark-body selection:bg-light-accent selection:text-white dark:selection:bg-dark-accent dark:selection:text-white transition-colors duration-300">
-    {/* Global Continuous Animated Wave Background Across All Sections */}
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    {/* Global Smooth Animated Wave Background */}
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden gpu-accelerated">
       <HeroWaveCanvas />
     </div>
 
@@ -58,7 +66,14 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<PortfolioHome />} />
-            <Route path="/admin" element={<AdminPage />} />
+            <Route
+              path="/admin"
+              element={
+                <React.Suspense fallback={<AdminLoadingFallback />}>
+                  <AdminPage />
+                </React.Suspense>
+              }
+            />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>

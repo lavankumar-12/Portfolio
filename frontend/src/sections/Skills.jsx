@@ -73,13 +73,13 @@ export const Skills = () => {
             ))}
           </div>
 
-          {/* Right Side: Animated Round Skill Logos Orbit (shifted right with extra spacing) */}
+          {/* Right Side: Animated Round Skill Logos Orbit */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="lg:col-span-4 flex items-center justify-center lg:justify-end lg:pl-6 lg:translate-x-5"
+            className="lg:col-span-4 flex items-center justify-center lg:justify-end lg:pl-4 w-full overflow-hidden sm:overflow-visible"
           >
             <SkillOrbitVisual
               skillNames={allSkillNames}

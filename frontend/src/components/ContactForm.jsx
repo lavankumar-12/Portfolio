@@ -116,7 +116,7 @@ export const ContactForm = () => {
           onChange={handleChange}
           placeholder="e.g. Alex Morgan"
           disabled={isSubmitting}
-          className={`w-full px-4 py-3 rounded-xl border bg-light-secondary dark:bg-dark-secondary/60 text-light-heading dark:text-dark-heading placeholder-light-body/50 dark:placeholder-dark-body/50 text-sm focus:outline-none focus:ring-2 transition-all ${
+          className={`w-full px-4 py-3 rounded-xl border bg-light-secondary dark:bg-dark-secondary/60 text-light-heading dark:text-dark-heading placeholder-light-body/50 dark:placeholder-dark-body/50 text-base sm:text-sm focus:outline-none focus:ring-2 transition-all ${
             errors.name
               ? 'border-rose-500 focus:ring-rose-500/30'
               : 'border-light-border dark:border-dark-border focus:border-[#FF2E63] dark:focus:border-[#FF2E63] focus:ring-[#FF2E63]/20'
@@ -141,7 +141,7 @@ export const ContactForm = () => {
           onChange={handleChange}
           placeholder="alex@company.com"
           disabled={isSubmitting}
-          className={`w-full px-4 py-3 rounded-xl border bg-light-secondary dark:bg-dark-secondary/60 text-light-heading dark:text-dark-heading placeholder-light-body/50 dark:placeholder-dark-body/50 text-sm focus:outline-none focus:ring-2 transition-all ${
+          className={`w-full px-4 py-3 rounded-xl border bg-light-secondary dark:bg-dark-secondary/60 text-light-heading dark:text-dark-heading placeholder-light-body/50 dark:placeholder-dark-body/50 text-base sm:text-sm focus:outline-none focus:ring-2 transition-all ${
             errors.email
               ? 'border-rose-500 focus:ring-rose-500/30'
               : 'border-light-border dark:border-dark-border focus:border-[#FF2E63] dark:focus:border-[#FF2E63] focus:ring-[#FF2E63]/20'
@@ -166,7 +166,7 @@ export const ContactForm = () => {
           onChange={handleChange}
           placeholder="Full Stack Opportunity / Project Collaboration"
           disabled={isSubmitting}
-          className={`w-full px-4 py-3 rounded-xl border bg-light-secondary dark:bg-dark-secondary/60 text-light-heading dark:text-dark-heading placeholder-light-body/50 dark:placeholder-dark-body/50 text-sm focus:outline-none focus:ring-2 transition-all ${
+          className={`w-full px-4 py-3 rounded-xl border bg-light-secondary dark:bg-dark-secondary/60 text-light-heading dark:text-dark-heading placeholder-light-body/50 dark:placeholder-dark-body/50 text-base sm:text-sm focus:outline-none focus:ring-2 transition-all ${
             errors.subject
               ? 'border-rose-500 focus:ring-rose-500/30'
               : 'border-light-border dark:border-dark-border focus:border-[#FF2E63] dark:focus:border-[#FF2E63] focus:ring-[#FF2E63]/20'
@@ -191,7 +191,7 @@ export const ContactForm = () => {
           onChange={handleChange}
           placeholder="Hello Lavan, I came across your portfolio and would like to discuss..."
           disabled={isSubmitting}
-          className={`w-full px-4 py-3 rounded-xl border bg-light-secondary dark:bg-dark-secondary/60 text-light-heading dark:text-dark-heading placeholder-light-body/50 dark:placeholder-dark-body/50 text-sm focus:outline-none focus:ring-2 transition-all resize-none ${
+          className={`w-full px-4 py-3 rounded-xl border bg-light-secondary dark:bg-dark-secondary/60 text-light-heading dark:text-dark-heading placeholder-light-body/50 dark:placeholder-dark-body/50 text-base sm:text-sm focus:outline-none focus:ring-2 transition-all resize-none ${
             errors.message
               ? 'border-rose-500 focus:ring-rose-500/30'
               : 'border-light-border dark:border-dark-border focus:border-[#FF2E63] dark:focus:border-[#FF2E63] focus:ring-[#FF2E63]/20'

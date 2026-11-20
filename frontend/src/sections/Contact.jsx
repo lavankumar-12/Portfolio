@@ -19,7 +19,7 @@ export const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column: Direct Contact Info & Channels */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-8 rounded-3xl bg-gradient-to-br from-sky-50/90 via-white/95 to-cyan-50/85 dark:bg-none dark:bg-dark-card border border-sky-200/80 dark:border-dark-border shadow-light-card dark:shadow-dark-card space-y-6 backdrop-blur-md">
+            <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-sky-50/90 via-white/95 to-cyan-50/85 dark:bg-none dark:bg-dark-card border border-sky-200/80 dark:border-dark-border shadow-light-card dark:shadow-dark-card space-y-6 backdrop-blur-md">
               <div>
                 <h3 className="text-xl font-bold text-light-heading dark:text-dark-heading mb-1">
                   Contact Information
@@ -42,7 +42,7 @@ export const Contact = () => {
                     <span className="text-[11px] font-semibold uppercase tracking-wider text-light-body dark:text-dark-body block">
                       Email Address
                     </span>
-                    <p className="text-sm font-bold text-light-heading dark:text-dark-heading truncate group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">
+                    <p className="text-sm font-bold text-light-heading dark:text-dark-heading break-all group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors">
                       {profile.email}
                     </p>
                   </div>
@@ -111,7 +111,7 @@ export const Contact = () => {
 
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7">
-            <div className="p-8 rounded-3xl bg-gradient-to-br from-rose-50/85 via-white/95 to-sky-50/80 dark:bg-none dark:bg-dark-card border border-rose-200/75 dark:border-dark-border shadow-light-card dark:shadow-dark-card backdrop-blur-md">
+            <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-rose-50/85 via-white/95 to-sky-50/80 dark:bg-none dark:bg-dark-card border border-rose-200/75 dark:border-dark-border shadow-light-card dark:shadow-dark-card backdrop-blur-md">
               <h3 className="text-xl font-bold text-light-heading dark:text-dark-heading mb-1 flex items-center gap-2">
                 <MessageSquare className="w-5 h-5 text-light-accent dark:text-dark-accent" />
                 Send a Direct Message

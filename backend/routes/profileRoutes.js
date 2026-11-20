@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
       resumeData: { $exists: true, $ne: '' },
     });
 
-    res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=300');
+    res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=86400');
     res.json({
       ...doc,
       hasCustomResume: Boolean(hasResumeDoc),

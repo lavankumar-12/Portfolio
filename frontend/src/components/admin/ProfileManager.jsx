@@ -15,7 +15,7 @@ import { api } from '../../services/api';
 import { defaultProfile } from '../../context/PortfolioContext';
 import defaultAvatar from '../../assets/images/profile.svg';
 
-// Automatically resize & compress profile photos to a crisp 640px retina image (~40-80 KB)
+// Automatically resize & compress profile photos to an optimized 420px retina image (~20-35 KB)
 const compressProfileImage = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -24,7 +24,7 @@ const compressProfileImage = (file) =>
       const img = new Image();
       img.onerror = () => reject(new Error('Invalid image file'));
       img.onload = () => {
-        const maxSize = 640;
+        const maxSize = 420;
         let { width, height } = img;
         if (width > maxSize || height > maxSize) {
           if (width > height) {
@@ -40,12 +40,12 @@ const compressProfileImage = (file) =>
         canvas.height = height;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, width, height);
-        const compressed = canvas.toDataURL('image/webp', 0.85);
+        const compressed = canvas.toDataURL('image/webp', 0.82);
         // Fallback to jpeg if browser doesn't support webp encoding
         resolve(
           compressed.startsWith('data:image/webp')
             ? compressed
-            : canvas.toDataURL('image/jpeg', 0.85)
+            : canvas.toDataURL('image/jpeg', 0.82)
         );
       };
       img.src = reader.result;
@@ -72,12 +72,18 @@ export const ProfileManager = ({ profileData, onRefresh, notify }) => {
     try {
       const optimizedDataUri = await compressProfileImage(file);
       setForm((prev) => ({ ...prev, profilePhoto: optimizedDataUri }));
+      try {
+        localStorage.setItem('lavan_profile_photo_v1', optimizedDataUri);
+      } catch {}
       notify('Photo optimized for instant loading! Click "Save Profile" to publish it.', 'success');
     } catch (err) {
       // Fallback to raw server upload if needed
       try {
         const res = await api.uploadImage(file);
         setForm((prev) => ({ ...prev, profilePhoto: res.url }));
+        try {
+          localStorage.setItem('lavan_profile_photo_v1', res.url);
+        } catch {}
         notify('Photo uploaded! Click "Save Profile" to publish it.', 'success');
       } catch (uploadErr) {
         notify(uploadErr.message || err.message || 'Photo upload failed', 'error');
@@ -92,6 +98,11 @@ export const ProfileManager = ({ profileData, onRefresh, notify }) => {
     e.preventDefault();
     setSaving(true);
     try {
+      if (form.profilePhoto) {
+        try {
+          localStorage.setItem('lavan_profile_photo_v1', form.profilePhoto);
+        } catch {}
+      }
       await api.updateProfile(form);
       notify('Profile updated and published live!', 'success');
       await onRefresh();

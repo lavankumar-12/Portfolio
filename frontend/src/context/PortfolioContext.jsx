@@ -20,6 +20,7 @@ import infosysAiSvg from '../assets/certificates/infosys-ai.svg';
 const PortfolioContext = createContext();
 
 const PROFILE_CACHE_KEY = 'lavan_profile_cache_v1';
+const PHOTO_CACHE_KEY = 'lavan_profile_photo_v1';
 
 const projectFallbackImages = [hospitalSvg, expenseSvg, todoSvg, docstringSvg];
 const certFallbackImages = [nptelSvg, pythonGfgSvg, googleAndroidSvg, infosysAiSvg];
@@ -34,7 +35,7 @@ export const defaultProfile = {
   college: personalInfo.college,
   heroDescription: personalInfo.heroDescription,
   aboutBio: personalInfo.aboutParagraphs[0],
-  profilePhoto: '',
+  profilePhoto: personalInfo.profilePhoto || '/profile.webp',
   specialtyText: 'Full Stack MERN & Python',
   highlightMetric: '95%',
   highlightLabel: 'Java NPTEL',
@@ -51,19 +52,29 @@ export const defaultProfile = {
 const readCachedProfile = () => {
   try {
     const raw = localStorage.getItem(PROFILE_CACHE_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (parsed && typeof parsed === 'object') {
-      return { ...defaultProfile, ...parsed };
+    const cachedPhoto = localStorage.getItem(PHOTO_CACHE_KEY);
+    let profile = { ...defaultProfile };
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        profile = { ...profile, ...parsed };
+      }
     }
+    if (cachedPhoto) {
+      profile.profilePhoto = cachedPhoto;
+    }
+    return profile;
   } catch {
     // Ignore storage read errors
   }
-  return null;
+  return { ...defaultProfile };
 };
 
 const writeCachedProfile = (profileObj) => {
   try {
+    if (profileObj.profilePhoto) {
+      localStorage.setItem(PHOTO_CACHE_KEY, profileObj.profilePhoto);
+    }
     // Exclude large PDF blob if ever present
     const { resumeData, ...lightweight } = profileObj;
     localStorage.setItem(PROFILE_CACHE_KEY, JSON.stringify(lightweight));

@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- High-Priority Image Preload for Instant Photo Loading -->
+    <link rel="preload" as="image" href="/profile.webp" type="image/webp" fetchpriority="high" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     
     <!-- Primary Meta Tags -->
     <title>Lavan Kumar | Full Stack Developer Portfolio</title>
