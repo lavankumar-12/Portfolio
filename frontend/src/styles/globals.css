@@ -47,6 +47,11 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-overflow-scrolling: touch;
   }
+
+  /* Fixed navbar scroll offset for smooth anchor navigation */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
 }
 
 /* Hide scrollbars for touch-friendly horizontal carousels and lists */
