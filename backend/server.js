@@ -109,6 +109,21 @@ app.get("/health", (req, res) => {
   });
 });
 
+// Automated self-ping keep-alive for Render free tier (prevents 15-minute inactivity spin-down)
+const keepAliveUrl = process.env.RENDER_EXTERNAL_URL || process.env.SERVER_URL;
+if (keepAliveUrl) {
+  const pingIntervalMs = 12 * 60 * 1000; // Ping every 12 minutes
+  setInterval(async () => {
+    try {
+      const pingEndpoint = `${keepAliveUrl.replace(/\/$/, '')}/health`;
+      await fetch(pingEndpoint);
+      console.log(`[KeepAlive] Pinged ${pingEndpoint} to prevent free tier spin-down`);
+    } catch (err) {
+      console.log(`[KeepAlive] Ping failed:`, err.message);
+    }
+  }, pingIntervalMs);
+  console.log(`⏱️ Keep-alive scheduled every 12 minutes for: ${keepAliveUrl}`);
+}
 
 // Connect DB and start server
 connectDB().then(() => {

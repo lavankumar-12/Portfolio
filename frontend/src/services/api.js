@@ -17,20 +17,32 @@ async function rawRequest(endpoint, options = {}) {
     ...(options.headers || {}),
   };
 
-  const response = await fetch(`${API_BASE}${endpoint}`, {
-    ...options,
-    headers,
-  });
+  // Add a 7-second timeout for public queries so sleeping free-tier backends never freeze initial page rendering
+  const timeoutMs = options.timeout || 7000;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
 
-  const data = await response.json().catch(() => ({}));
+  try {
+    const response = await fetch(`${API_BASE}${endpoint}`, {
+      ...options,
+      headers,
+      signal: options.signal || controller.signal,
+    });
+    clearTimeout(timer);
 
-  if (!response.ok) {
-    const error = new Error(data.message || `Request failed (${response.status})`);
-    error.status = response.status;
-    throw error;
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      const error = new Error(data.message || `Request failed (${response.status})`);
+      error.status = response.status;
+      throw error;
+    }
+
+    return { data, response };
+  } catch (err) {
+    clearTimeout(timer);
+    throw err;
   }
-
-  return { data, response };
 }
 
 async function request(endpoint, options = {}) {
